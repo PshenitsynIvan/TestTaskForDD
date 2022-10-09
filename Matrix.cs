@@ -19,6 +19,8 @@ namespace TestTaskForDD
                     throw new Exception(" Размер матрицы не должен быть единичным.");
                 else if (value == 0)
                     throw new Exception(" Размер матрицы не может быть нулевым.");
+                else if(value < 0)
+                    throw new Exception(" Размер матрицы не может быть отрицательным");
                 else
                     size = value;
             }
@@ -75,19 +77,28 @@ namespace TestTaskForDD
                 Console.WriteLine();
                 throw new Exception(" Ввод других символов кроме чисел не допускается.");
             }
+            int rowIndex = rowTempIndex - 1;
+            if (rowIndex < 0 || rowIndex > size - 1)
+            {
+                throw new Exception("Номер строки может быть от 1 до " + size);
+            }
 
             Console.Write(" Поле ввода [Y]: ");
-
             bool result2 = int.TryParse(Console.ReadLine(), out var columnTempIndex);
-            int rowIndex = rowTempIndex - 1;
+            
+
             int columnIndex = columnTempIndex - 1;
             if (result2 == false)
             {
                 Console.WriteLine();
                 throw new Exception(" Ввод других символов кроме чисел не допускается.");
             }
-              
-               Console.Write($"Выбранный элемент: { arr[rowIndex ,columnIndex]}");
+            if (columnIndex < 0 || columnIndex > size - 1)
+            {
+                throw new Exception("Номер столбца может быть от 1 до " + size);
+            }
+
+            Console.Write($"Выбранный элемент: { arr[rowIndex ,columnIndex]}");
                
                Console.WriteLine();
             
